@@ -1,0 +1,281 @@
+[
+  {
+    "id": "seed-parfait",
+    "clientId": "cli_parfait_a11mng",
+    "name": "파르페by알레르망",
+    "siteUrl": "https://example-parfait.co.kr",
+    "mallPlatform": "카페24",
+    "memo": "침구 카테고리. 구매완료 URL 확인 필요.",
+    "installStatus": "검수 필요",
+    "lastCheckedAt": null,
+    "tags": {
+      "ga4": {
+        "enabled": true,
+        "measurementId": "G-PARFAIT01"
+      },
+      "googleAds": {
+        "enabled": true,
+        "conversionId": "AW-123456789",
+        "conversionLabel": "abcDeFgH"
+      },
+      "naver": {
+        "enabled": false,
+        "scriptIdOrCode": ""
+      },
+      "meta": {
+        "enabled": true,
+        "pixelId": "123456789012345"
+      },
+      "danggeun": {
+        "enabled": false,
+        "scriptIdOrCode": ""
+      }
+    },
+    "events": [
+      {
+        "key": "PageView",
+        "enabled": true,
+        "urlContains": "/",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "ViewContent",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "AddToCart",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "BeginCheckout",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "Purchase",
+        "enabled": true,
+        "urlContains": "/order/order_result",
+        "useValue": true,
+        "revenueVariableName": "orderAmount",
+        "orderIdVariableName": "orderId"
+      },
+      {
+        "key": "CompleteRegistration",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "Lead",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      }
+    ],
+    "createdAt": "2026-05-22T06:11:00.535Z",
+    "updatedAt": "2026-05-22T06:11:00.535Z"
+  },
+  {
+    "id": "seed-nzorigin",
+    "clientId": "cli_nzorigin_2026aa",
+    "name": "엔젯오리진",
+    "siteUrl": "https://example-nzorigin.co.kr",
+    "mallPlatform": "Shopify",
+    "memo": "글로벌몰 확장 가능성 있음.",
+    "installStatus": "설치 완료",
+    "lastCheckedAt": "2026-05-22T06:11:00.535Z",
+    "tags": {
+      "ga4": {
+        "enabled": true,
+        "measurementId": "G-NZORIGIN1"
+      },
+      "googleAds": {
+        "enabled": false,
+        "conversionId": "",
+        "conversionLabel": ""
+      },
+      "naver": {
+        "enabled": true,
+        "scriptIdOrCode": "wcslog123456"
+      },
+      "meta": {
+        "enabled": false,
+        "pixelId": ""
+      },
+      "danggeun": {
+        "enabled": false,
+        "scriptIdOrCode": ""
+      }
+    },
+    "events": [
+      {
+        "key": "PageView",
+        "enabled": true,
+        "urlContains": "/",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "ViewContent",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "AddToCart",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "BeginCheckout",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "Purchase",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": true,
+        "revenueVariableName": "orderAmount",
+        "orderIdVariableName": "orderId"
+      },
+      {
+        "key": "CompleteRegistration",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "Lead",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      }
+    ],
+    "createdAt": "2026-05-22T06:11:00.535Z",
+    "updatedAt": "2026-05-22T06:11:00.535Z"
+  },
+  {
+    "id": "seed-housetailor",
+    "clientId": "cli_housetailor_77qq",
+    "name": "하우스테일러",
+    "siteUrl": "https://example-housetailor.co.kr",
+    "mallPlatform": "아임웹",
+    "memo": "리드 이벤트 중심.",
+    "installStatus": "미설치",
+    "lastCheckedAt": null,
+    "tags": {
+      "ga4": {
+        "enabled": false,
+        "measurementId": ""
+      },
+      "googleAds": {
+        "enabled": false,
+        "conversionId": "",
+        "conversionLabel": ""
+      },
+      "naver": {
+        "enabled": false,
+        "scriptIdOrCode": ""
+      },
+      "meta": {
+        "enabled": true,
+        "pixelId": "998877665544332"
+      },
+      "danggeun": {
+        "enabled": true,
+        "scriptIdOrCode": "danggeun_pixel_001"
+      }
+    },
+    "events": [
+      {
+        "key": "PageView",
+        "enabled": true,
+        "urlContains": "/",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "ViewContent",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "AddToCart",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "BeginCheckout",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "Purchase",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": true,
+        "revenueVariableName": "orderAmount",
+        "orderIdVariableName": "orderId"
+      },
+      {
+        "key": "CompleteRegistration",
+        "enabled": false,
+        "urlContains": "",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      },
+      {
+        "key": "Lead",
+        "enabled": true,
+        "urlContains": "/contact/complete",
+        "useValue": false,
+        "revenueVariableName": "",
+        "orderIdVariableName": ""
+      }
+    ],
+    "createdAt": "2026-05-22T06:11:00.535Z",
+    "updatedAt": "2026-05-22T06:11:00.535Z"
+  }
+]

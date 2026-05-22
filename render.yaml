@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: conversion-script-manager
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: conversion-script-data
+      mountPath: /var/data
+      sizeGB: 1
