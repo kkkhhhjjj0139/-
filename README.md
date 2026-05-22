@@ -28,7 +28,8 @@ Render 배포 흐름:
 2. Render Dashboard에서 `New` → `Blueprint`를 선택합니다.
 3. 저장소를 연결하고 `render.yaml`을 적용합니다.
 4. Render가 `npm ci && npm run build` 후 `npm start`로 서버를 실행합니다.
-5. 무료 플랜에서는 데이터가 `/tmp/conversion-script-data/clients.json`에 저장됩니다.
+5. `ADMIN_PASSWORD`를 설정하면 관리자 화면과 관리 API가 비밀번호로 보호됩니다.
+6. `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`를 설정하면 광고주 데이터가 Supabase에 저장됩니다.
 
 배포 후에는 설치 스크립트가 자동으로 Render 도메인을 사용합니다.
 
@@ -36,7 +37,30 @@ Render 배포 흐름:
 <script src="https://YOUR-SERVICE.onrender.com/tag-loader.js" data-client-id="CLIENT_ID"></script>
 ```
 
-무료 플랜은 일정 시간 미사용 시 cold start가 발생할 수 있고, 재배포/재시작 시 로컬 JSON 데이터가 초기화될 수 있습니다. 실제 운영에서는 Supabase/Firebase 같은 외부 DB 또는 Render 유료 플랜의 persistent disk, 커스텀 도메인, HTTPS, 로그인, 백업 정책을 권장합니다.
+무료 플랜은 일정 시간 미사용 시 cold start가 발생할 수 있습니다. Supabase를 연결하지 않으면 재배포/재시작 시 로컬 JSON 데이터가 초기화될 수 있으므로 실제 운영에서는 Supabase/Firebase 같은 외부 DB를 권장합니다.
+
+## 운영 안전 설정
+
+Render 서비스의 `Environment` 메뉴에서 아래 값을 설정하세요.
+
+```text
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=원하는_관리자_비밀번호
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=Supabase service_role key
+```
+
+`ADMIN_PASSWORD`를 설정하면 관리자 페이지 접속 시 브라우저 기본 로그인 창이 뜹니다. `/tag-loader.js`, `/api/tags`, `/api/health`는 광고주 사이트에서 접근해야 하므로 공개 상태를 유지합니다.
+
+## Supabase 연결 방법
+
+1. Supabase에서 새 프로젝트를 만듭니다.
+2. SQL Editor에서 [supabase-schema.sql](./supabase-schema.sql) 내용을 실행합니다.
+3. Project Settings → API에서 `Project URL`을 복사해 Render의 `SUPABASE_URL`에 넣습니다.
+4. `service_role` key를 복사해 Render의 `SUPABASE_SERVICE_ROLE_KEY`에 넣습니다.
+5. Render에서 `Manual Deploy` → `Deploy latest commit`을 실행합니다.
+
+`service_role` key는 서버 전용 비밀키입니다. 브라우저 코드에 노출하지 말고 Render 환경변수에만 저장하세요.
 
 ## 광고주 등록 방법
 
@@ -107,6 +131,7 @@ Render 배포 흐름:
 - `public/tag-loader.js`: 광고주 사이트에 설치되는 통합 로더
 - `data/clients.json`: 로컬 JSON 저장소
 - `render.yaml`: Render 클라우드 배포 설정
+- `supabase-schema.sql`: Supabase 테이블 생성 SQL
 - `types/client.ts`: 타입 정의
 - `lib/store.ts`: 저장소 추상화
 - `lib/tag-utils.ts`: 설치 스크립트 및 태그 유틸
