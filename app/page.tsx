@@ -92,6 +92,13 @@ export default function Home() {
     await loadClients();
   }
 
+  async function seedInitialClients() {
+    const response = await fetch("/api/admin/seed", { method: "POST" });
+    const result = await response.json();
+    await loadClients();
+    alert(result.message || "초기 데이터 복원을 실행했습니다.");
+  }
+
   const metrics = [
     { label: "등록 광고주", value: `${clients.length}개` },
     { label: "설치 완료", value: `${clients.filter((client) => client.installStatus === "설치 완료").length}개` },
@@ -203,10 +210,10 @@ export default function Home() {
           )}
 
           {active === "settings" && (
-            <Panel title="설정">
+            <Panel title="설정" action={<button className="btn btn-secondary" onClick={seedInitialClients}>초기 데이터 복원</button>}>
               <div className="grid grid-cols-2 gap-4 text-sm text-slate-600">
                 <Info label="저장 방식" value="로컬 JSON 파일" />
-                <Info label="데이터 파일" value="data/clients.json" />
+                <Info label="운영 저장소" value="Supabase 환경변수 설정 시 Supabase 사용" />
                 <Info label="향후 확장" value="Supabase, Firebase, 로그인, 권한 관리" />
                 <Info label="보안 전제" value="관리자 권한이 있는 광고주 사이트에만 직접 설치" />
               </div>
