@@ -28,7 +28,7 @@ Render 배포 흐름:
 2. Render Dashboard에서 `New` → `Blueprint`를 선택합니다.
 3. 저장소를 연결하고 `render.yaml`을 적용합니다.
 4. Render가 `npm ci && npm run build` 후 `npm start`로 서버를 실행합니다.
-5. 데이터는 Render persistent disk의 `/var/data/clients.json`에 저장됩니다.
+5. 무료 플랜에서는 데이터가 `/tmp/conversion-script-data/clients.json`에 저장됩니다.
 
 배포 후에는 설치 스크립트가 자동으로 Render 도메인을 사용합니다.
 
@@ -36,7 +36,7 @@ Render 배포 흐름:
 <script src="https://YOUR-SERVICE.onrender.com/tag-loader.js" data-client-id="CLIENT_ID"></script>
 ```
 
-무료 플랜은 일정 시간 미사용 시 cold start가 발생할 수 있습니다. 실제 운영에서는 유료 플랜, 커스텀 도메인, HTTPS, 로그인, 백업 정책을 권장합니다.
+무료 플랜은 일정 시간 미사용 시 cold start가 발생할 수 있고, 재배포/재시작 시 로컬 JSON 데이터가 초기화될 수 있습니다. 실제 운영에서는 Supabase/Firebase 같은 외부 DB 또는 Render 유료 플랜의 persistent disk, 커스텀 도메인, HTTPS, 로그인, 백업 정책을 권장합니다.
 
 ## 광고주 등록 방법
 
