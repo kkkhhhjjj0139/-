@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { serializeError } from "@/lib/error-utils";
 import { deleteClient, getClientById, updateClient } from "@/lib/store";
 
+export const dynamic = "force-dynamic";
+
 interface RouteContext {
   params: { id: string };
 }

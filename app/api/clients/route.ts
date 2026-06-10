@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { serializeError } from "@/lib/error-utils";
 import { createClient, getClients } from "@/lib/store";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     return NextResponse.json(await getClients(), {

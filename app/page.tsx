@@ -43,7 +43,9 @@ export default function Home() {
       setClients(data);
       if (!selectedId && data[0]) setSelectedId(data[0].id);
     } catch (error) {
-      setClients([]);
+      const fallback = loadLocalClients();
+      setClients(fallback);
+      if (!selectedId && fallback[0]) setSelectedId(fallback[0].id);
       setErrorMessage(error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다.");
     } finally {
       setLoading(false);
@@ -63,12 +65,23 @@ export default function Home() {
   }, [selected]);
 
   async function createClient() {
+    const fallbackClient = {
+      ...createEmptyClient(),
+      id: crypto.randomUUID(),
+      clientId: `cli_${Math.random().toString(36).slice(2, 10)}`,
+      name: "신규 광고주",
+      siteUrl: "https://",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    } as Client;
+
     const response = await fetch("/api/clients", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...createEmptyClient(), name: "신규 광고주", siteUrl: "https://" })
     });
-    const client = await response.json();
+    const client = response.ok ? await response.json() : fallbackClient;
+    if (!response.ok) saveLocalClients([client, ...clients]);
     await loadClients();
     setSelectedId(client.id);
     setActive("clients");
@@ -81,14 +94,16 @@ export default function Home() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(draft)
     });
-    const client = await response.json();
+    const client = response.ok ? await response.json() : { ...draft, updatedAt: new Date().toISOString() };
+    if (!response.ok) saveLocalClients(clients.map((item) => (item.id === client.id ? client : item)));
     setClients((prev) => prev.map((item) => (item.id === client.id ? client : item)));
     setDraft(client);
   }
 
   async function deleteSelected() {
     if (!draft) return;
-    await fetch(`/api/clients/${draft.id}`, { method: "DELETE" });
+    const response = await fetch(`/api/clients/${draft.id}`, { method: "DELETE" });
+    if (!response.ok) saveLocalClients(clients.filter((client) => client.id !== draft.id));
     setDraft(null);
     setSelectedId("");
     await loadClients();
@@ -243,6 +258,20 @@ export default function Home() {
       )}
     </Shell>
   );
+}
+
+function loadLocalClients(): Client[] {
+  if (typeof window === "undefined") return [];
+  try {
+    return JSON.parse(window.localStorage.getItem("conversionHubClients") || "[]") as Client[];
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalClients(clients: Client[]) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem("conversionHubClients", JSON.stringify(clients));
 }
 
 function Panel({ title, action, children }: { title: string; action?: ReactNode; children: ReactNode }) {

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { publicCorsHeaders } from "@/lib/cors";
 import { getClients } from "@/lib/store";
 
+export const dynamic = "force-dynamic";
+
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: publicCorsHeaders });
 }

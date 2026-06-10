@@ -3,6 +3,8 @@ import { serializeError } from "@/lib/error-utils";
 import { createClient, getClients } from "@/lib/store";
 import { seedClients } from "@/lib/seed";
 
+export const dynamic = "force-dynamic";
+
 export async function POST() {
   try {
     const existing = await getClients();

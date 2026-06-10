@@ -4,6 +4,8 @@ import { getClients, updateClient } from "@/lib/store";
 import { validateClientSettings } from "@/lib/validation";
 import { ValidationRequest } from "@/types/client";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ValidationRequest;
