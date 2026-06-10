@@ -57,7 +57,7 @@ SUPABASE_SERVICE_ROLE_KEY=Supabase service_role key
 1. Supabase에서 새 프로젝트를 만듭니다.
 2. SQL Editor에서 [supabase-schema.sql](./supabase-schema.sql) 내용을 실행합니다.
 3. Project Settings → API에서 `Project URL`을 복사해 Render의 `SUPABASE_URL`에 넣습니다.
-4. `service_role` key를 복사해 Render의 `SUPABASE_SERVICE_ROLE_KEY`에 넣습니다.
+4. `Legacy anon, service_role API keys` 탭에서 `service_role` key를 복사해 Render의 `SUPABASE_SERVICE_ROLE_KEY`에 넣습니다. `Publishable key`나 새 `Secret key`가 아니라 legacy `service_role` JWT를 사용하세요.
 5. Render에서 `Manual Deploy` → `Deploy latest commit`을 실행합니다.
 
 `service_role` key는 서버 전용 비밀키입니다. 브라우저 코드에 노출하지 말고 Render 환경변수에만 저장하세요.

@@ -20,6 +20,7 @@ export default function Home() {
   const [selectedId, setSelectedId] = useState<string>("");
   const [draft, setDraft] = useState<Client | null>(null);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const [validationItems, setValidationItems] = useState<ValidationItem[]>([]);
   const [validationHtml, setValidationHtml] = useState("");
   const [publicOrigin, setPublicOrigin] = useState("http://localhost:3000");
@@ -29,11 +30,24 @@ export default function Home() {
 
   const loadClients = useCallback(async () => {
     setLoading(true);
-    const response = await fetch("/api/clients");
-    const data = await response.json();
-    setClients(data);
-    if (!selectedId && data[0]) setSelectedId(data[0].id);
-    setLoading(false);
+    setErrorMessage("");
+    try {
+      const response = await fetch("/api/clients");
+      const data = await response.json();
+
+      if (!response.ok || !Array.isArray(data)) {
+        const detail = data?.error?.message ? ` (${data.error.message})` : "";
+        throw new Error(`${data?.message || "광고주 목록을 불러오지 못했습니다."}${detail}`);
+      }
+
+      setClients(data);
+      if (!selectedId && data[0]) setSelectedId(data[0].id);
+    } catch (error) {
+      setClients([]);
+      setErrorMessage(error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다.");
+    } finally {
+      setLoading(false);
+    }
   }, [selectedId]);
 
   useEffect(() => {
@@ -115,6 +129,12 @@ export default function Home() {
         </div>
         <button className="btn btn-primary" onClick={createClient}><Plus size={16} /> 신규 광고주 등록</button>
       </div>
+
+      {errorMessage && (
+        <div className="mb-5 rounded-md border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">
+          {errorMessage}
+        </div>
+      )}
 
       {loading ? (
         <div className="rounded-lg border border-line bg-white p-8 text-sm text-slate-500">불러오는 중입니다.</div>

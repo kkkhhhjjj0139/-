@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { serializeError } from "@/lib/error-utils";
 import { deleteClient, getClientById, updateClient } from "@/lib/store";
 
 interface RouteContext {
@@ -22,7 +23,7 @@ export async function PUT(request: Request, { params }: RouteContext) {
     }
     return NextResponse.json(client);
   } catch (error) {
-    return NextResponse.json({ message: "광고주 정보를 저장하지 못했습니다.", error }, { status: 500 });
+    return NextResponse.json({ message: "광고주 정보를 저장하지 못했습니다.", error: serializeError(error) }, { status: 500 });
   }
 }
 

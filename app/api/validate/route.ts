@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { serializeError } from "@/lib/error-utils";
 import { getClients, updateClient } from "@/lib/store";
 import { validateClientSettings } from "@/lib/validation";
 import { ValidationRequest } from "@/types/client";
@@ -32,6 +33,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ client, items, htmlChecked: Boolean(html) });
   } catch (error) {
-    return NextResponse.json({ message: "설치 검수 중 오류가 발생했습니다.", error }, { status: 500 });
+    return NextResponse.json({ message: "설치 검수 중 오류가 발생했습니다.", error: serializeError(error) }, { status: 500 });
   }
 }
