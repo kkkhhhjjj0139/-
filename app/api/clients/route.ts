@@ -4,9 +4,14 @@ import { createClient, getClients } from "@/lib/store";
 
 export async function GET() {
   try {
-    return NextResponse.json(await getClients());
+    return NextResponse.json(await getClients(), {
+      headers: { "Cache-Control": "no-store" }
+    });
   } catch (error) {
-    return NextResponse.json({ message: "광고주 목록을 불러오지 못했습니다.", error: serializeError(error) }, { status: 500 });
+    return NextResponse.json(
+      { message: "광고주 목록을 불러오지 못했습니다.", error: serializeError(error) },
+      { status: 500, headers: { "Cache-Control": "no-store" } }
+    );
   }
 }
 
