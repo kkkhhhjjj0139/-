@@ -149,3 +149,5 @@ SUPABASE_SERVICE_ROLE_KEY=Supabase service_role key
 ## 주의 사항
 
 본 MVP는 로컬 개발과 구조 검증을 위한 도구입니다. 실제 운영에서는 HTTPS 배포, 인증/인가, 변경 이력, 스크립트 무결성, 광고주 동의 절차, 개인정보 처리 정책 검토가 필요합니다.
+
+배포 상태 확인은 `/api/health`에서 할 수 있습니다.
