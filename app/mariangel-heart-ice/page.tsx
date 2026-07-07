@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MariangelHeartIceProductPage from "@/components/product/MariangelHeartIceProductPage";
+import MariangelStructuredData from "@/components/product/MariangelStructuredData";
 import { product } from "@/components/product/mariangel-heart-ice-data";
 
 export const metadata: Metadata = {
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function MariangelHeartIcePage() {
-  return <MariangelHeartIceProductPage />;
+  return (
+    <>
+      <MariangelStructuredData />
+      <MariangelHeartIceProductPage />
+    </>
+  );
 }
