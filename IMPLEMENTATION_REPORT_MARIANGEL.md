@@ -12,6 +12,7 @@
 - `components/product/MariangelStructuredData.tsx`
 - `components/product/mariangel-heart-ice-data.ts`
 - `scripts/validate-mariangel-mvp.mjs`
+- `.github/workflows/mariangel-mvp.yml`
 - `IMPLEMENTATION_REPORT_MARIANGEL.md`
 
 ## 핵심 UI/UX 변경
@@ -56,7 +57,8 @@
 
 - `node scripts/validate-mariangel-mvp.mjs`: 15개 정적 검증 통과
 - TypeScript `transpileModule` 구문 검사: TS/TSX 4개 파일 통과
-- 전체 `npm run lint`, `npm run build`: 현재 실행 환경에 저장소 의존성이 설치되어 있지 않아 로컬 실행하지 못함. PR 연결 CI 또는 개발 환경에서 추가 확인 필요
+- GitHub Actions에 `npm ci`, 정적 검증, `npm run lint`, `npm run build` 워크플로 추가
+- 현재 커밋에서 Actions 실행 기록이 아직 생성되지 않아 전체 lint/build 성공 여부는 미확정
 
 ## 운영 데이터로 검증할 항목
 
